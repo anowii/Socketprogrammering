@@ -14,18 +14,14 @@ while True:
 
     payload = message.decode()
     msgNum = int(payload[:5])
-    # Print message and client address
-    print ("Packet nr: ", msgNum  , lastNum)
+    # Print packet nr
+    print ("Packet nr: ", msgNum)
     
     lastNum2 = msgNum - 1
-    if(lastNum != lastNum2 and msgNum != 0):
+    # if the (current packaged number -1) != (the last package number) the packages are in disorder.
+    if(lastNum != lastNum2):
         print ("log: felaktig ordning", lastNum, "=>", msgNum)
+    # saves the current package number
     lastNum = int(payload[:5])    
+    #Print client address 
     print (clientAddress)
-    
-    # change sentence to upper case letters
-    #modifiedMessage = message.decode().upper()
-    
-    # send back modified sentence to client using remembered address
-    #serverSocket.sendto(modifiedMessage.encode(), clientAddress)
-
